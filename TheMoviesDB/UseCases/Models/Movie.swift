@@ -41,7 +41,8 @@ class DateResp: Codable {
 }
 
 // MARK: - Result
-class Movie: Codable {
+class Movie: Codable, Hashable{
+    
     let adult: Bool
     let backdropPath: String
     let genreIDS: [Int]
@@ -84,5 +85,13 @@ class Movie: Codable {
         self.video = video
         self.voteAverage = voteAverage
         self.voteCount = voteCount
+    }
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+    }
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+      lhs.id == rhs.id
     }
 }

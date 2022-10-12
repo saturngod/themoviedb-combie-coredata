@@ -17,9 +17,12 @@ class NowPlayingViewModel: NowPlayingViewModelType {
     private var data: [Movie] = []
     private var shouldLoadNext = true
     
+    
     init(useCase: MovieUseCaseType) {
         self.useCase = useCase
     }
+    
+  
     
     
     private func loadData() {
