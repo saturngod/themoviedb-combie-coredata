@@ -11,7 +11,7 @@ import Combine
 class SplashViewController: UIViewController {
 
     private var cancellables = Set<AnyCancellable>()
-    private let input: PassthroughSubject<SplashViewInput,Never> = .init()
+    private let input: PassthroughSubject<SplashViewModel.Input,Never> = .init()
     private let cancelables = Set<AnyCancellable>()
     private let vm = SplashViewModel(useCase: MovieUseCase(networkService: NetworkService()))
     override func viewDidLoad() {
@@ -23,8 +23,14 @@ class SplashViewController: UIViewController {
         let output = vm.transform(input: input.eraseToAnyPublisher())
         output.receive(on: DispatchQueue.main)
             .sink {[weak self] event in
-               
-            }
+//                switch event {
+//                case .loading(let loaded):
+//                case .success(let genre):
+//                case .failure(let error):
+//
+//                }
+                
+            }.store(in: &cancellables)
     }
     
     override func viewDidAppear(_ animated: Bool) {

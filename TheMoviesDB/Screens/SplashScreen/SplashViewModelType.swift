@@ -8,19 +8,21 @@
 import UIKit
 import Combine
 
-enum SplashViewInput {
-    case appear
+extension SplashViewModel {
+    enum Input {
+        case appear
+    }
+    
+    enum State {
+        case loading(loaded: Bool)
+        case success(genre: Genre)
+        case failure(error: Error)
+    }
 }
 
-enum SplashViewState {
-    case loading
-    case success(genre: Genre)
-    case failure(error: Error)
-}
 
-
-typealias SplashViewModelOutput = AnyPublisher<SplashViewState, Never>
-typealias SplashViewModelInput = AnyPublisher<SplashViewInput, Never>
+typealias SplashViewModelOutput = AnyPublisher<SplashViewModel.State, Never>
+typealias SplashViewModelInput = AnyPublisher<SplashViewModel.Input, Never>
 
 protocol SplashViewModelType: AnyObject {
     func transform(input: SplashViewModelInput) -> SplashViewModelOutput

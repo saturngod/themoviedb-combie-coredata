@@ -12,15 +12,16 @@ class SplashViewModel: SplashViewModelType {
     
     private var useCase: MovieUseCaseType
     private var cancellables = Set<AnyCancellable>()
-    private let output: PassthroughSubject<SplashViewState, Never> = .init()
+    private let output: PassthroughSubject<State, Never> = .init()
     
     init(useCase: MovieUseCaseType) {
         self.useCase = useCase
     }
     
     private func loadData() {
-        self.output.send(.loading)
+        self.output.send(.loading(loaded: true))
         self.useCase.genreList().sink { [weak self] completion in
+            self?.output.send(.loading(loaded: false))
             if case .failure(let error) = completion {
                 self?.output.send(.failure(error: error))
             }
