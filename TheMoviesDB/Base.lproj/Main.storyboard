@@ -47,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="1026.1538461538462" y="-28.436018957345969"/>
         </scene>
-        <!--Now Playing-->
+        <!--TheMovieDB-->
         <scene sceneID="nj3-YC-647">
             <objects>
                 <viewController storyboardIdentifier="MainScreenViewController" id="Qwd-JK-4Vx" customClass="MainScreenViewController" customModule="TheMoviesDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,28 +57,105 @@
                         <viewLayoutGuide key="safeArea" id="TRl-4a-iwo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now Playing" image="play.rectangle.fill" catalog="system" id="rN9-JQ-C32"/>
+                    <navigationItem key="navigationItem" title="TheMovieDB" id="s7C-ox-wa0">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Kes-59-MO2"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="xYi-jf-rE7">
+                            <connections>
+                                <segue destination="kJo-YQ-rvO" kind="presentation" id="TPY-gC-2vr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bS-Kf-xtE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1026.1538461538462" y="743.60189573459718"/>
+            <point key="canvasLocation" x="1955.3846153846152" y="743.60189573459718"/>
+        </scene>
+        <!--Search Movies-->
+        <scene sceneID="fqA-LK-UCD">
+            <objects>
+                <viewController id="ghF-jx-BKW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Egh-7t-GR7">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="aAQ-1c-C7h">
+                                <rect key="frame" x="0.0" y="56" width="390" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ghF-jx-BKW" id="BaZ-0P-CPp"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="h41-Yj-Pu6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aAQ-1c-C7h" firstAttribute="leading" secondItem="h41-Yj-Pu6" secondAttribute="leading" id="98n-B4-MpP"/>
+                            <constraint firstItem="aAQ-1c-C7h" firstAttribute="trailing" secondItem="h41-Yj-Pu6" secondAttribute="trailing" id="TyI-bW-AmY"/>
+                            <constraint firstItem="aAQ-1c-C7h" firstAttribute="top" secondItem="h41-Yj-Pu6" secondAttribute="top" id="f2M-Px-xRZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search Movies" id="RB2-c4-hGj">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="slj-qA-e1E"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JFk-Sc-BhZ"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z4p-L6-sAE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3800" y="728.67298578199052"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7vG-qo-j42">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zsx-Gx-kL3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="zsx-Gx-kL3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ORQ-FU-pgj">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Qwd-JK-4Vx" kind="relationship" relationship="viewControllers" id="Mwy-Cb-1xJ"/>
+                        <segue destination="cnC-nq-gIx" kind="relationship" relationship="viewControllers" id="Mwy-Cb-1xJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L41-Pg-1M4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="96.92307692307692" y="743.60189573459718"/>
+        </scene>
+        <!--Now Playing-->
+        <scene sceneID="fU0-Ha-OiR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cnC-nq-gIx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="play.rectangle.fill" catalog="system" id="rN9-JQ-C32"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="04t-EE-5lk">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Qwd-JK-4Vx" kind="relationship" relationship="rootViewController" id="JzF-4Y-1tO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kgj-Hw-BY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1026.1538461538462" y="743.60189573459718"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jAO-M9-4ZE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kJo-YQ-rvO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mqV-RE-nin">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ghF-jx-BKW" kind="relationship" relationship="rootViewController" id="SzX-mG-23g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dov-gS-2Uh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2870.7692307692305" y="728.67298578199052"/>
         </scene>
     </scenes>
     <resources>

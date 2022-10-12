@@ -9,7 +9,7 @@ import UIKit
 
 
 enum RoutePath: String {
-    case MainScreen = "MainScreenViewController"
+    case MainScreen = "TabBarController"
     case SplashScreen = "SplashScreenViewController"
 }
 
@@ -26,7 +26,7 @@ class Router: RouterType {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: to.rawValue)
-        vc.modalPresentationStyle = .fullScreen 
+        vc.modalPresentationStyle = .fullScreen
         if(present) {
             from.present(vc, animated: animated)
         }
