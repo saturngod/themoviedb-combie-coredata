@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650426F028F6699200480677 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650426EF28F6699200480677 /* MainScreenViewController.swift */; };
+		650426F328F669DA00480677 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650426F228F669DA00480677 /* Router.swift */; };
+		650426F528F66E4600480677 /* GlobalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650426F428F66E4600480677 /* GlobalService.swift */; };
 		650F60A428F560810011983F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F60A328F560810011983F /* AppDelegate.swift */; };
 		650F60A628F560810011983F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F60A528F560810011983F /* SceneDelegate.swift */; };
 		650F60A828F560810011983F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F60A728F560810011983F /* SplashViewController.swift */; };
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		650426EF28F6699200480677 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		650426F228F669DA00480677 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		650426F428F66E4600480677 /* GlobalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalService.swift; sourceTree = "<group>"; };
 		650F60A028F560810011983F /* TheMoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650F60A328F560810011983F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		650F60A528F560810011983F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +104,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650426EE28F6697900480677 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				650426EF28F6699200480677 /* MainScreenViewController.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		650426F128F669CF00480677 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				650426F228F669DA00480677 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		650F609728F560810011983F = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +143,7 @@
 		650F60A228F560810011983F /* TheMoviesDB */ = {
 			isa = PBXGroup;
 			children = (
+				650426F128F669CF00480677 /* Router */,
 				657BC39F28F5CF1C009F24CF /* Factory */,
 				657BC39928F5C882009F24CF /* Screens */,
 				650F60DB28F5632E0011983F /* UseCases */,
@@ -157,6 +180,7 @@
 			children = (
 				650F60E328F56DF10011983F /* Image */,
 				650F60D428F561140011983F /* Network */,
+				650426F428F66E4600480677 /* GlobalService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -201,6 +225,7 @@
 		657BC39928F5C882009F24CF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				650426EE28F6697900480677 /* MainScreen */,
 				657BC39A28F5C888009F24CF /* SplashScreen */,
 			);
 			path = Screens;
@@ -360,12 +385,15 @@
 				650F60D628F561200011983F /* Resource.swift in Sources */,
 				657BC39C28F5C8A0009F24CF /* SplashViewModel.swift in Sources */,
 				650F60E228F56D790011983F /* MovieResource.swift in Sources */,
+				650426F028F6699200480677 /* MainScreenViewController.swift in Sources */,
 				657BC3A128F5CF2D009F24CF /* MovieViewModelBuilder.swift in Sources */,
 				657BC39E28F5C917009F24CF /* SplashViewModelType.swift in Sources */,
+				650426F328F669DA00480677 /* Router.swift in Sources */,
 				650F60A428F560810011983F /* AppDelegate.swift in Sources */,
 				650F60E528F56DFB0011983F /* ImageLoaderServiceType.swift in Sources */,
 				650F60D828F561500011983F /* NetworkServiceType.swift in Sources */,
 				650F60DD28F56BE80011983F /* MovieUseCase.swift in Sources */,
+				650426F528F66E4600480677 /* GlobalService.swift in Sources */,
 				650F60DA28F561680011983F /* NetworkService.swift in Sources */,
 				650F60E028F56C3D0011983F /* Genre.swift in Sources */,
 				650F60A628F560810011983F /* SceneDelegate.swift in Sources */,
