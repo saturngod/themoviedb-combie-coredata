@@ -9,41 +9,7 @@ import XCTest
 import Combine
 @testable import TheMoviesDB
 
-
-final class NetworkServiceTypeMock: NetworkServiceType {
-    var responses = [String:Any]()
-    
-    func load<T>(_ resource: Resource<T>) -> AnyPublisher<T, Error> {
-        print(resource.url.path)
-        if let response = responses[resource.url.path] as? T {
-            return Just(response).setFailureType(to: Error.self).eraseToAnyPublisher()
-        } else if let error = responses[resource.url.path] as? NetworkError {
-            return Fail(error:error).eraseToAnyPublisher()
-        } else {
-            return Fail(error:NetworkError.invalidRequest).eraseToAnyPublisher()
-        }
-    }
-}
-
-
-
-extension Decodable {
-    static func loadFromFile(testBundle: Bundle, filename: String) -> Self {
-        do {
-            
-            let path = testBundle.path(forResource: filename, ofType: nil)!
-            
-            let data = try Data(contentsOf: URL(fileURLWithPath: path))
-            return try JSONDecoder().decode(Self.self, from: data)
-        } catch {
-            fatalError("Error: \(error)")
-        }
-    }
-}
-
 final class TheMoviesDBTests: XCTestCase {
-    
-    
     
     let networkService = NetworkServiceTypeMock()
     var useCase: MovieUseCase!
