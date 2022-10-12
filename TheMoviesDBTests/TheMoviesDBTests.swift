@@ -61,6 +61,37 @@ final class TheMoviesDBTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func testSplashModel() throws {
+        
+        let expectation = self.expectation(description: "SplashModel")
+        
+        let testBundle = Bundle(for: type(of: self))
+        let genere = Genre.loadFromFile(testBundle: testBundle,filename: "Genre.json")
+        var stage = true
+        networkService.responses["/3/genre/movie/list"] = genere
+        
+        let model = SplashViewModel(useCase: useCase)
+        let input: PassthroughSubject<SplashViewModel.Input,Never> = .init()
+        let output = model.transform(input: input.eraseToAnyPublisher())
+        output.sink { event in
+            switch event {
+            case .loading(let loaded):
+                XCTAssertEqual(loaded, stage)
+                stage = !stage
+            case .success(let genre):
+                XCTAssertNotNil(genre)
+                expectation.fulfill()
+            case .failure(_):
+                XCTFail()
+            }
+        }.store(in: &cancellables)
+        
+        
+        input.send(.appear)
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+        
+    }
+    
     func testGenre() throws {
         
         let expectation = self.expectation(description: "genre")
@@ -84,8 +115,6 @@ final class TheMoviesDBTests: XCTestCase {
     
     func testGenereFail() throws {
         let expectation = self.expectation(description: "genre")
-        
-        let testBundle = Bundle(for: type(of: self))
         
         var genreList: Genre!
         networkService.responses["/3/genre/movie/list"] = NetworkError.invalidRequest
