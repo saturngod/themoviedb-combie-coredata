@@ -10,6 +10,7 @@
 		650426F028F6699200480677 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650426EF28F6699200480677 /* MainScreenViewController.swift */; };
 		650426F328F669DA00480677 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650426F228F669DA00480677 /* Router.swift */; };
 		650426F528F66E4600480677 /* GlobalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650426F428F66E4600480677 /* GlobalService.swift */; };
+		650426FA28F683C200480677 /* Genre.json in Resources */ = {isa = PBXBuildFile; fileRef = 650426F928F683C200480677 /* Genre.json */; };
 		650F60A428F560810011983F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F60A328F560810011983F /* AppDelegate.swift */; };
 		650F60A628F560810011983F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F60A528F560810011983F /* SceneDelegate.swift */; };
 		650F60A828F560810011983F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F60A728F560810011983F /* SplashViewController.swift */; };
@@ -53,6 +54,7 @@
 		650426EF28F6699200480677 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		650426F228F669DA00480677 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		650426F428F66E4600480677 /* GlobalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalService.swift; sourceTree = "<group>"; };
+		650426F928F683C200480677 /* Genre.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Genre.json; sourceTree = "<group>"; };
 		650F60A028F560810011983F /* TheMoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650F60A328F560810011983F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		650F60A528F560810011983F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		650426F628F67D1500480677 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				650426F928F683C200480677 /* Genre.json */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		650F609728F560810011983F = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +171,7 @@
 		650F60B928F560820011983F /* TheMoviesDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				650426F628F67D1500480677 /* Responses */,
 				650F60BA28F560820011983F /* TheMoviesDBTests.swift */,
 			);
 			path = TheMoviesDBTests;
@@ -363,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				650426FA28F683C200480677 /* Genre.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
