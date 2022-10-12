@@ -10,17 +10,16 @@ import Combine
 
 protocol MovieUseCaseType {
     func genreList() -> AnyPublisher<Genre,Error>
+    func nowPlayingList(page: Int) -> AnyPublisher<MovieResp,Error> 
 }
 
 final class MovieUseCase: MovieUseCaseType {
     
     
     private let networkService: NetworkServiceType
-    //private let imageLoaderService: ImageLoaderServiceType
     
     init(networkService: NetworkServiceType) {
         self.networkService = networkService
-//        self.imageLoaderService = imageLoaderService
     }
     
     func genreList() -> AnyPublisher<Genre, Error> {
@@ -31,5 +30,16 @@ final class MovieUseCase: MovieUseCaseType {
             }
             .eraseToAnyPublisher()
     }
+    
+    func nowPlayingList(page: Int) -> AnyPublisher<MovieResp,Error> {
+        return networkService.load(Resource<MovieResp>.nowPlaying(page: page))
+            .catch { error -> AnyPublisher<MovieResp,Error> in
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    
+    
     
 }
