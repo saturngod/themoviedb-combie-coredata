@@ -34,8 +34,6 @@ class NowPlayingViewController: UIViewController {
     func registerCell() {
         collectionView.register(UINib(nibName: MoviePosterCollectionCell.nibName, bundle: .main), forCellWithReuseIdentifier: MoviePosterCollectionCell.reuseIdentifier)
         
-        
-        
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
             // Item
@@ -80,12 +78,10 @@ class NowPlayingViewController: UIViewController {
                 cell.video = video
                 
                 if let vm = self?.vm {
-                    print("LOADING >>>> \(indexPath.row)")
                     if vm.shouldLoadNext(row: indexPath.row) {
                         self?.input.send(.loadNext)
                     }
                 }
-                
                 
                 return cell
             })
@@ -99,7 +95,7 @@ class NowPlayingViewController: UIViewController {
         
         var snapshot = Snapshot()
         snapshot.appendSections([.list])
-        snapshot.appendItems(self.vm.data)
+        snapshot.appendItems(self.vm.getData())
         dataSource.apply(snapshot, animatingDifferences: true)
          
     }
