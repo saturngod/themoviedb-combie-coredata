@@ -49,16 +49,34 @@ class NowPlayingViewController: UIViewController {
             
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 12)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
             // Group
             
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalWidth(3/5))
+                heightDimension: .fractionalWidth(8/16))
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCount)
+            let group1 = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCount)
             
-            let section = NSCollectionLayoutSection(group: group)
+            
+//            let groupSize2 = NSCollectionLayoutSize(
+//                widthDimension: .fractionalWidth(1),
+//                heightDimension: .fractionalWidth(1/2))
+//
+//            let group2 = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize2, subitem: item, count: 1)
+//
+//            let nestedGroup = NSCollectionLayoutGroup.vertical(
+//              layoutSize: NSCollectionLayoutSize(
+//                widthDimension: .fractionalWidth(1.0),
+//                heightDimension: .fractionalHeight(1)),
+//              subitems: [
+//                group1,
+//                group2,
+//                group1,
+//              ]
+//            )
+            
+            let section = NSCollectionLayoutSection(group: group1)
             
             return section
         })

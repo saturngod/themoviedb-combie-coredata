@@ -149,7 +149,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1U-PW-V9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2000" y="1509.9526066350711"/>
+            <point key="canvasLocation" x="1955" y="1510"/>
+        </scene>
+        <!--Popular-->
+        <scene sceneID="36g-gp-74R">
+            <objects>
+                <viewController storyboardIdentifier="TopRateViewController" id="dvu-kc-LM9" userLabel="Popular" customClass="TopRateViewController" customModule="TheMoviesDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HDA-1H-3LA">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="efS-DM-ewd">
+                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KMx-ZZ-Cz7">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FOj-qf-WVc">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FNS-vG-xUx">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BZQ-Xn-sZx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BZQ-Xn-sZx" firstAttribute="bottom" secondItem="efS-DM-ewd" secondAttribute="bottom" id="7wR-ss-eCO"/>
+                            <constraint firstItem="BZQ-Xn-sZx" firstAttribute="trailing" secondItem="efS-DM-ewd" secondAttribute="trailing" id="hhh-kC-3c9"/>
+                            <constraint firstItem="efS-DM-ewd" firstAttribute="leading" secondItem="BZQ-Xn-sZx" secondAttribute="leading" id="hpm-p0-BuY"/>
+                            <constraint firstItem="efS-DM-ewd" firstAttribute="top" secondItem="BZQ-Xn-sZx" secondAttribute="top" id="vyj-oB-Lyy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Top Rated" id="40i-91-xmP">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="PMC-jN-9IF"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="efS-DM-ewd" id="PaP-Zg-Byg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRE-Ir-1Lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1954" y="2198"/>
         </scene>
         <!--Search Movies-->
         <scene sceneID="fqA-LK-UCD">
@@ -197,6 +246,7 @@
                     <connections>
                         <segue destination="cnC-nq-gIx" kind="relationship" relationship="viewControllers" id="Mwy-Cb-1xJ"/>
                         <segue destination="qLP-lW-Qnd" kind="relationship" relationship="viewControllers" id="gMP-gr-CnF"/>
+                        <segue destination="4UA-de-OKn" kind="relationship" relationship="viewControllers" id="Dcc-uP-yFe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L41-Pg-1M4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -259,10 +309,30 @@
             </objects>
             <point key="canvasLocation" x="1070.7692307692307" y="1509.9526066350711"/>
         </scene>
+        <!--Top Rated-->
+        <scene sceneID="PIP-PC-wX8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4UA-de-OKn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Top Rated" image="square.3.stack.3d.top.fill" catalog="system" id="hfV-8X-Ahs"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SN5-T8-cIa">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dvu-kc-LM9" kind="relationship" relationship="rootViewController" id="xF4-G4-KEI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7aQ-9r-wJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071" y="2199"/>
+        </scene>
     </scenes>
     <resources>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="popcorn.fill" catalog="system" width="102" height="128"/>
+        <image name="square.3.stack.3d.top.fill" catalog="system" width="128" height="125"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

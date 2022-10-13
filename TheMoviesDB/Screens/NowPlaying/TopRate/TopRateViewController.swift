@@ -8,9 +8,9 @@
 import UIKit
 import Combine
 
-class PopularViewController: NowPlayingViewController {
+class TopRateViewController: NowPlayingViewController {
 
     override func setupModel() -> NowPlayingViewModel {
-        return PopularViewModel(useCase: MovieUseCase(networkService: NetworkService()))
+        return TopRateViewModel(useCase: MovieUseCase(networkService: NetworkService()))
     }
 }

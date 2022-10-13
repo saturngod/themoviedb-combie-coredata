@@ -17,13 +17,17 @@ class MoviePosterCollectionCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var thumbnailView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
     
     var video: Movie? {
         didSet {
-            titleLabel.text = video?.title
             if let imgPath = video?.posterPath {
-                thumbnailView.sd_setImage(with: URL(string: "\(ApiConstants.smallImageUrl)/\(imgPath)"), placeholderImage: UIImage(named: "cover"))
+                
+                if self.frame.width > self.frame.height, let backdrop = video?.backdropPath {
+                    thumbnailView.sd_setImage(with: URL(string: "\(ApiConstants.smallImageUrl)/\(backdrop)"), placeholderImage: UIImage(named: "cover"))
+                }
+                else {
+                    thumbnailView.sd_setImage(with: URL(string: "\(ApiConstants.smallImageUrl)/\(imgPath)"), placeholderImage: UIImage(named: "cover"))
+                }
             }
         }
     }
