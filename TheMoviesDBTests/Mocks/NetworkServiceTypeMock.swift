@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-
 @testable import TheMoviesDB
 
 final class NetworkServiceTypeMock: NetworkServiceType {

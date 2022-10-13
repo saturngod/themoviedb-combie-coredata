@@ -7,6 +7,7 @@
 
 import XCTest
 import Combine
+
 @testable import TheMoviesDB
 
 final class TheMoviesDBTests: XCTestCase {
@@ -99,6 +100,122 @@ final class TheMoviesDBTests: XCTestCase {
         self.waitForExpectations(timeout: 1.0, handler: nil)
         XCTAssertNil(genreList)
     }
+    
+    func testNowPlaying() throws {
+        
+        let expectation = self.expectation(description: "nowplaying")
+        
+        let testBundle = Bundle(for: type(of: self))
+        
+        let genere = MovieResp.loadFromFile(testBundle: testBundle,filename: "NowPlaying.json")
+        var movieResp: MovieResp!
+        networkService.responses["/3/movie/now_playing"] = genere
+        useCase.nowPlayingList(page: 1).sink { _ in
+            
+        } receiveValue: { value in
+            movieResp = value
+            expectation.fulfill()
+        } .store(in: &cancellables)
+        
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertNotNil(movieResp)
+        XCTAssertTrue(movieResp.results.count > 0)
+        
+    }
+    
+    func testNowPlayingLastPage() throws {
+        
+        let expectation = self.expectation(description: "nowplaying")
+        
+        let testBundle = Bundle(for: type(of: self))
+        
+        let file = MovieResp.loadFromFile(testBundle: testBundle,filename: "NowPlaying.json")
+        var movieResp: MovieResp!
+        networkService.responses["/3/movie/now_playing"] = file
+        useCase.nowPlayingList(page: 100).sink { _ in
+            
+        } receiveValue: { value in
+            movieResp = value
+            expectation.fulfill()
+        } .store(in: &cancellables)
+        
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertNotNil(movieResp)
+        XCTAssertTrue(movieResp.results.count > 0)
+        
+    }
+    
+    
+    
+    func testNowPlayingModel() throws {
+        
+        let expectation = self.expectation(description: "NowPlayingModel")
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = MovieResp.loadFromFile(testBundle: testBundle,filename: "NowPlaying.json")
+        var stage = true
+        networkService.responses["/3/movie/now_playing"] = file
+        
+        let model = NowPlayingViewModel(useCase: useCase)
+        let input: PassthroughSubject<NowPlayingViewModel.Input,Never> = .init()
+        let output = model.transform(input: input.eraseToAnyPublisher())
+        output.sink { event in
+            switch event {
+            case .newData(let data):
+                XCTAssertTrue(data.count > 0)
+                expectation.fulfill()
+            case .loading(loaded: let loaded):
+                XCTAssertEqual(loaded, stage)
+                stage = !stage
+            case .failure(error: let error):
+                XCTFail(error.localizedDescription)
+                expectation.fulfill()
+            }
+        }.store(in: &cancellables)
+
+        
+        
+        input.send(.appear)
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertTrue(model.shouldLoadNext)
+        
+    }
+    
+    func testNowPlayingModelShouldNotLoadNext() throws {
+        
+        let expectation = self.expectation(description: "NowPlayingModel")
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = MovieResp.loadFromFile(testBundle: testBundle,filename: "NowPlaying.json")
+        var stage = true
+        networkService.responses["/3/movie/now_playing"] = file
+        
+        let model = NowPlayingViewModel(useCase: useCase)
+        model.page = 100
+        let input: PassthroughSubject<NowPlayingViewModel.Input,Never> = .init()
+        let output = model.transform(input: input.eraseToAnyPublisher())
+        output.sink { event in
+            switch event {
+            case .newData(let data):
+                XCTAssertTrue(data.count > 0)
+                expectation.fulfill()
+            case .loading(loaded: let loaded):
+                XCTAssertEqual(loaded, stage)
+                stage = !stage
+            case .failure(error: let error):
+                XCTFail(error.localizedDescription)
+                expectation.fulfill()
+            }
+        }.store(in: &cancellables)
+
+        
+        
+        input.send(.appear)
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertFalse(model.shouldLoadNext)
+        
+    }
+    
     
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
