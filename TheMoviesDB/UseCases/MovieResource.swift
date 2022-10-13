@@ -13,6 +13,7 @@ enum ApiPath {
     case nowPlaying (page: Int)
     case popular (page: Int)
     case topRated (page: Int)
+    case upComing (page: Int)
     
     var value: String {
         switch self {
@@ -20,6 +21,7 @@ enum ApiPath {
         case .nowPlaying(let page) : return "movie/now_playing?page=\(page)"
         case .popular(let page) : return "movie/popular?page=\(page)"
         case .topRated(let page) : return "movie/top_rated?page=\(page)"
+        case .upComing(let page) : return "movie/upcoming?page=\(page)"
         }
     }
 }
@@ -58,6 +60,10 @@ extension Resource {
     
     static func topRated(page: Int) -> Resource<MovieResp> {
         return loadData(path: .topRated(page: page))
+    }
+    
+    static func upComing(page: Int) -> Resource<MovieResp> {
+        return loadData(path: .upComing(page: page))
     }
         
 }

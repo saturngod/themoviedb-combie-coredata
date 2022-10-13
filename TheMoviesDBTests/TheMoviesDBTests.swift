@@ -217,10 +217,17 @@ final class TheMoviesDBTests: XCTestCase {
     }
     
     
-    func testPerformanceExample() throws {
+    func testPerformance() throws {
         // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
+            
+            let testBundle = Bundle(for: type(of: self))
+            let genere = Genre.loadFromFile(testBundle: testBundle,filename: "Genre.json")
+            
+            let ids = [9648,878,37,16,99]
+            let _ = ids.map {genere.nameFrom(id: $0)}
+            
+            
         }
     }
     
