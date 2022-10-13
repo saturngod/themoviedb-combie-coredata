@@ -6,16 +6,26 @@
 //
 
 import UIKit
+import SDWebImage
 
-class MoviePosterCollectionCell {
+class MoviePosterCollectionCell: UICollectionViewCell {
+    
+    static var nibName: String = "MoviePosterCollectionCell"
+    
+    static var reuseIdentifier: String {
+      return String(describing: MoviePosterCollectionCell.self)
+    }
+    
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
     var video: Movie? {
-      didSet {
-        titleLabel.text = video?.title
-        
-      }
+        didSet {
+            titleLabel.text = video?.title
+            if let imgPath = video?.posterPath {
+                thumbnailView.sd_setImage(with: URL(string: "\(ApiConstants.smallImageUrl)/\(imgPath)"), placeholderImage: UIImage(named: "cover"))
+            }
+        }
     }
 }
 

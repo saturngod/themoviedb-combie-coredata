@@ -10,9 +10,12 @@ import Combine
 
 class NowPlayingViewController: UIViewController {
     
+    enum Section{
+        case list
+    }
     // MARK: - Value Types
-    typealias DataSource = UICollectionViewDiffableDataSource<Int, Movie>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Movie>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Movie>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Movie>
     
     @IBOutlet weak var collectionView: UICollectionView!
     private var cancellables = Set<AnyCancellable>()
@@ -20,34 +23,85 @@ class NowPlayingViewController: UIViewController {
     private let cancelables = Set<AnyCancellable>()
     private let vm = NowPlayingViewModel(useCase: MovieUseCase(networkService: NetworkService()))
     private let router = Router()
-    private lazy var dataSource = makeDataSource()
+    private var dataSource: DataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerCell()
         bind()
+    }
+    
+    func registerCell() {
+        collectionView.register(UINib(nibName: MoviePosterCollectionCell.nibName, bundle: .main), forCellWithReuseIdentifier: MoviePosterCollectionCell.reuseIdentifier)
+        
+        
+        
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1))
+            
+            let itemCount = 3
+            
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 12)
+            // Group
+            
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalWidth(3/5))
+            
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCount)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            
+            return section
+        })
+        
+        dataSource = makeDataSource()
     }
     
     func makeDataSource() -> DataSource {
         
         let dataSource = DataSource(
-            collectionView: collectionView,
-            cellProvider: { (collectionView, indexPath, video) ->
+            collectionView: self.collectionView,
+            cellProvider: {  [weak self] (collectionView, indexPath, video) ->
                 UICollectionViewCell? in
                 // 2
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: "VideoCollectionViewCell",
-                    for: indexPath) as? UICollectionViewCell
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: MoviePosterCollectionCell.reuseIdentifier,
+                    for: indexPath) as? MoviePosterCollectionCell else {
+                    return UICollectionViewCell()
+                }
+                
+                cell.video = video
+                
+                if let vm = self?.vm {
+                    print("LOADING >>>> \(indexPath.row)")
+                    if vm.shouldLoadNext(row: indexPath.row) {
+                        self?.input.send(.loadNext)
+                    }
+                }
+                
                 
                 return cell
             })
+        
+     
         
         return dataSource
     }
     
     func applySnapshot(data: [Movie]) {
+        
         var snapshot = Snapshot()
-        snapshot.appendItems(data, toSection: 1)
+        snapshot.appendSections([.list])
+        snapshot.appendItems(self.vm.data)
         dataSource.apply(snapshot, animatingDifferences: true)
+         
     }
     
     func bind() {
@@ -60,8 +114,7 @@ class NowPlayingViewController: UIViewController {
                 case .newData(let data):
                     self?.applySnapshot(data: data)
                 case .failure(let error):
-                    print("show error")
-                    
+                    print("show error \(error.localizedDescription)")
                 }
             }.store(in: &cancellables)
     }

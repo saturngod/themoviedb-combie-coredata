@@ -14,7 +14,7 @@ class NowPlayingViewModel: NowPlayingViewModelType {
     private var cancellables = Set<AnyCancellable>()
     private let output: PassthroughSubject<State, Never> = .init()
     private var page = 1
-    private var data: [Movie] = []
+    var data: [Movie] = []
     private var shouldLoadNext = true
     
     
@@ -24,6 +24,10 @@ class NowPlayingViewModel: NowPlayingViewModelType {
     
   
     
+    func shouldLoadNext(row: Int) -> Bool {
+        
+        return (row == data.count - 3 && shouldLoadNext)
+    }
     
     private func loadData() {
         

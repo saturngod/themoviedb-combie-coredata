@@ -14,12 +14,21 @@ struct Resource<T: Decodable> {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return nil
         }
-        components.queryItems = parameters.keys.map { key in
+        let newParameters: [URLQueryItem] = parameters.keys.map { key in
             URLQueryItem(name: key, value: parameters[key]?.description)
         }
+        
+        if let _ = components.queryItems {
+            components.queryItems?.append(contentsOf: newParameters)
+        }
+        else {
+            components.queryItems = newParameters
+        }
+        
         guard let url = components.url else {
             return nil
         }
+        
         return URLRequest(url: url)
     }
 

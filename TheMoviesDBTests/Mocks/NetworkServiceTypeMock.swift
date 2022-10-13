@@ -7,13 +7,14 @@
 
 import Foundation
 import Combine
+
 @testable import TheMoviesDB
 
 final class NetworkServiceTypeMock: NetworkServiceType {
     var responses = [String:Any]()
     
     func load<T>(_ resource: Resource<T>) -> AnyPublisher<T, Error> {
-        print(resource.url.path)
+        
         if let response = responses[resource.url.path] as? T {
             return Just(response).setFailureType(to: Error.self).eraseToAnyPublisher()
         } else if let error = responses[resource.url.path] as? NetworkError {

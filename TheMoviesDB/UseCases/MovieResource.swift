@@ -24,7 +24,15 @@ extension Resource {
     
     static func loadData<T>(path: ApiPath) -> Resource<T> {
         
-        let url = ApiConstants.baseUrl.appendingPathComponent(path.value)
+        var url: URL!
+        
+        if let urlToLoad = ApiConstants.baseUrl.appendingPathComponent(path.value).absoluteString.removingPercentEncoding {
+             url = URL(string: urlToLoad)
+        }
+        else {
+            url = ApiConstants.baseUrl.appendingPathComponent(path.value)
+        }
+        
         
         let parameters: [String : CustomStringConvertible] = [
             "api_key": ApiConstants.apiKey,
@@ -37,7 +45,7 @@ extension Resource {
     }
     
     static func nowPlaying(page: Int) -> Resource<MovieResp> {
-        return loadData(path: .nowPlaying(page: 1))
+        return loadData(path: .nowPlaying(page: page))
     }
         
 }

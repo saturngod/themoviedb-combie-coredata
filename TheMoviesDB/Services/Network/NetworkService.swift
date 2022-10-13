@@ -27,7 +27,7 @@ final class NetworkService: NetworkServiceType {
                 guard let response = response as? HTTPURLResponse else {
                     return Fail(error: NetworkError.invalidResponse).eraseToAnyPublisher()
                 }
-
+                
                 guard 200..<300 ~= response.statusCode else {
                     return Fail(error: NetworkError.dataLoadingError(statusCode: response.statusCode, data: data)).eraseToAnyPublisher()
                 }
