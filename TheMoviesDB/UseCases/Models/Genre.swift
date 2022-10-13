@@ -16,6 +16,16 @@ class Genre: Codable {
     init(genres: [GenreItem]) {
         self.genres = genres
     }
+    
+    func nameFrom(id: Int) -> String {
+        if let genre = genres.first {$0.id == id} {
+            return genre.name
+        }
+        else {
+            return ""
+        }
+        
+    }
 }
 
 // MARK: - GenreElement

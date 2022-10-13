@@ -11,4 +11,6 @@ class GlobalService {
     static var shared = GlobalService()
     
     var genres: Genre?
+    
+    
 }

@@ -54,7 +54,22 @@ class Movie: Codable, Hashable{
     let video: Bool
     let voteAverage: Double
     let voteCount: Int
-
+    var dateInfo: String? {
+        let dateFormatter = DateFormatter()
+          dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+          dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let rd = releaseDate, let date = dateFormatter.date(from:rd) {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            return dateFormatter.string(from: date)
+        }
+        return ""
+        
+    }
+    
+    var genreText: String? {
+        let genreName: [String] = genreIDS.map {GlobalService.shared.genres?.nameFrom(id: $0) ?? ""}
+        return genreName.joined(separator: ",")
+    }
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"

@@ -197,6 +197,7 @@
 		650F60A228F560810011983F /* TheMoviesDB */ = {
 			isa = PBXGroup;
 			children = (
+				6539CB9228F848660071CC4C /* Extensions */,
 				650426F128F669CF00480677 /* Router */,
 				657BC39928F5C882009F24CF /* Screens */,
 				650F60DB28F5632E0011983F /* UseCases */,
@@ -286,6 +287,13 @@
 				6513609428F81936006062AC /* TopRateViewModel.swift */,
 			);
 			path = TopRate;
+			sourceTree = "<group>";
+		};
+		6539CB9228F848660071CC4C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		657BC39928F5C882009F24CF /* Screens */ = {

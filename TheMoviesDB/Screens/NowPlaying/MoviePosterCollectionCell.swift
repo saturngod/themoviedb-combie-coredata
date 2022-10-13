@@ -17,9 +17,20 @@ class MoviePosterCollectionCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var thumbnailView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var voteAverageLabel: UILabel!
+    @IBOutlet weak var voteCount: UILabel!
     
     var video: Movie? {
         didSet {
+            titleLabel.text = video?.title
+            dateLabel.text = video?.dateInfo
+            genreLabel.text = video?.genreText
+            voteAverageLabel.text = "\(video?.voteAverage ?? 0)"
+            voteCount.text = "\(video?.voteCount ?? 0)"
+            
             if let imgPath = video?.posterPath {
                 
                 if self.frame.width > self.frame.height, let backdrop = video?.backdropPath {

@@ -54,27 +54,10 @@ class NowPlayingViewController: UIViewController {
             
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalWidth(8/16))
+                heightDimension: .fractionalWidth(5/6))
             
             let group1 = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCount)
             
-            
-//            let groupSize2 = NSCollectionLayoutSize(
-//                widthDimension: .fractionalWidth(1),
-//                heightDimension: .fractionalWidth(1/2))
-//
-//            let group2 = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize2, subitem: item, count: 1)
-//
-//            let nestedGroup = NSCollectionLayoutGroup.vertical(
-//              layoutSize: NSCollectionLayoutSize(
-//                widthDimension: .fractionalWidth(1.0),
-//                heightDimension: .fractionalHeight(1)),
-//              subitems: [
-//                group1,
-//                group2,
-//                group1,
-//              ]
-//            )
             
             let section = NSCollectionLayoutSection(group: group1)
             
