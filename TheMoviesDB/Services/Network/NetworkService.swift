@@ -22,7 +22,7 @@ final class NetworkService: NetworkServiceType {
         }
         return session.dataTaskPublisher(for: request)
             .mapError { _ in NetworkError.invalidRequest }
-            //.print()
+            .print()
             .flatMap { data, response -> AnyPublisher<Data, Error> in
                 guard let response = response as? HTTPURLResponse else {
                     return Fail(error: NetworkError.invalidResponse).eraseToAnyPublisher()

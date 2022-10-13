@@ -11,11 +11,13 @@ import Foundation
 enum ApiPath {
     case genre
     case nowPlaying (page: Int)
+    case popular (page: Int)
     
     var value: String {
         switch self {
         case .genre : return "/genre/movie/list"
         case .nowPlaying(let page) : return "movie/now_playing?page=\(page)"
+        case .popular(let page) : return "movie/popular?page=\(page)"
         }
     }
 }
@@ -46,6 +48,10 @@ extension Resource {
     
     static func nowPlaying(page: Int) -> Resource<MovieResp> {
         return loadData(path: .nowPlaying(page: page))
+    }
+    
+    static func popular(page: Int) -> Resource<MovieResp> {
+        return loadData(path: .popular(page: page))
     }
         
 }

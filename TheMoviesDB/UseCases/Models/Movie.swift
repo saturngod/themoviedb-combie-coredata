@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - MovieResp
 class MovieResp: Codable {
-    let dates: DateResp
+    let dates: DateResp?
     let page: Int
     let results: [Movie]
     let totalPages, totalResults: Int

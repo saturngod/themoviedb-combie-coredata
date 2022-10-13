@@ -21,7 +21,7 @@ class NowPlayingViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private let input: PassthroughSubject<NowPlayingViewModel.Input,Never> = .init()
     private let cancelables = Set<AnyCancellable>()
-    private let vm = NowPlayingViewModel(useCase: MovieUseCase(networkService: NetworkService()))
+    private lazy var vm: NowPlayingViewModel = setupModel()
     private let router = Router()
     private var dataSource: DataSource!
     
@@ -29,6 +29,10 @@ class NowPlayingViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         bind()
+    }
+    
+    func setupModel() -> NowPlayingViewModel {
+        return NowPlayingViewModel(useCase: MovieUseCase(networkService: NetworkService()))
     }
     
     func registerCell() {

@@ -10,12 +10,12 @@ import Combine
 
 class NowPlayingViewModel: NowPlayingViewModelType {
 
-    private var useCase: MovieUseCaseType
-    private var cancellables = Set<AnyCancellable>()
-    private let output: PassthroughSubject<State, Never> = .init()
-    private var page = 1
-    private var data: [Movie] = []
-    private var shouldLoadNext = true
+    var useCase: MovieUseCaseType
+    var cancellables = Set<AnyCancellable>()
+    let output: PassthroughSubject<State, Never> = .init()
+    var page = 1
+    var data: [Movie] = []
+    var shouldLoadNext = true
     
     
     init(useCase: MovieUseCaseType) {
@@ -32,7 +32,23 @@ class NowPlayingViewModel: NowPlayingViewModelType {
         return (row == data.count - 3 && shouldLoadNext)
     }
     
-    private func loadData() {
+    func receiveValue(movieResp: MovieResp) {
+        
+        if(movieResp.totalPages == self.page) {
+            self.shouldLoadNext = false
+        }
+        
+       
+        self.page = self.page + 1
+       
+        
+        if(movieResp.results.count > 0) {
+            self.data.append(contentsOf: movieResp.results)
+            self.output.send(.newData(data: movieResp.results))
+        }
+    }
+    
+    func loadData() {
         
         if !shouldLoadNext {
             return
@@ -47,17 +63,7 @@ class NowPlayingViewModel: NowPlayingViewModelType {
             }
         } receiveValue: { [weak self] movieResp in
             
-            if(movieResp.totalPages == self?.page) {
-                self?.shouldLoadNext = false
-            }
-            else if let pg = self?.page {
-                self?.page = pg + 1
-            }
-            
-            if(movieResp.results.count > 0) {
-                self?.data.append(contentsOf: movieResp.results)
-                self?.output.send(.newData(data: movieResp.results))
-            }
+            self?.receiveValue(movieResp: movieResp)
             
         }.store(in: &cancellables)
         
