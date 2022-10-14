@@ -56,13 +56,16 @@ class SearchMovieViewController: UIViewController {
     
     
     func makeDataSource() -> TableDataSource {
-        return TableDataSource(tableView: tableView) { tableView, indexPath, movie in
+        return TableDataSource(tableView: tableView) { [weak self] tableView, indexPath, movie in
             guard let cell: SearchResultCell = tableView.dequeueReusableCell(withIdentifier: SearchResultCell.reuseIdentifier) as? SearchResultCell else {
                 assertionFailure("Fail to deque TableViewcell")
                 return UITableViewCell()
             }
             cell.video = movie
             
+            if let viewmodel = self?.vm , viewmodel.shouldLoadNext(row: indexPath.row) {
+                self?.input.send(.loadNext)
+            }
             return cell
         }
     }

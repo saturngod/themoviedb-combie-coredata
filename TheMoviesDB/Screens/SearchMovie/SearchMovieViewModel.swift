@@ -65,7 +65,10 @@ class SearchMovieViewModel: SearchMovieViewModelType {
         }.store(in: &cancellables)
     }
     
-    
+    func shouldLoadNext(row: Int) -> Bool {
+        
+        return (row == data.count - 3 && shouldLoadNext)
+    }
     
     func transform(input: SearchMovieViewModelInput) -> SearchMovieViewModelOutput {
         input.debounce(for: .milliseconds(300), scheduler: Scheduler.mainScheduler).sink { [weak self] event in
