@@ -51,6 +51,7 @@ class SearchMovieViewController: UIViewController {
         tableView.register(UINib(nibName: SearchResultCell.nibName, bundle: .main), forCellReuseIdentifier: SearchResultCell.reuseIdentifier)
         
         
+        
     }
     
     
