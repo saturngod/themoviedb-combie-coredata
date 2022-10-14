@@ -179,12 +179,27 @@
                     <view key="view" contentMode="scaleToFill" id="Egh-7t-GR7">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="J3K-iJ-CXQ">
+                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="h41-Yj-Pu6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="h41-Yj-Pu6" firstAttribute="trailing" secondItem="J3K-iJ-CXQ" secondAttribute="trailing" id="23u-yn-MUp"/>
+                            <constraint firstItem="J3K-iJ-CXQ" firstAttribute="leading" secondItem="h41-Yj-Pu6" secondAttribute="leading" id="JsW-ke-aaS"/>
+                            <constraint firstItem="J3K-iJ-CXQ" firstAttribute="top" secondItem="h41-Yj-Pu6" secondAttribute="top" id="ooJ-C2-3Ve"/>
+                            <constraint firstItem="h41-Yj-Pu6" firstAttribute="bottom" secondItem="J3K-iJ-CXQ" secondAttribute="bottom" id="zEo-WS-2jC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search Movies" id="RB2-c4-hGj">
                         <barButtonItem key="backBarButtonItem" title="Back" id="slj-qA-e1E"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="J3K-iJ-CXQ" id="1Rh-HI-k1w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4p-L6-sAE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

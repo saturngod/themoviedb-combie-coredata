@@ -8,6 +8,12 @@
 import UIKit
 
 class SearchResultCell: UITableViewCell {
+    
+    static var nibName: String = "SearchResultCell"
+    static var reuseIdentifier: String {
+      return String(describing: SearchResultCell.self)
+    }
+    
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

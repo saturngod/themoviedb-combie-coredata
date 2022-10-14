@@ -14,7 +14,7 @@ class SearchMovieViewModel: SearchMovieViewModelType {
     var cancellables = Set<AnyCancellable>()
     let output: PassthroughSubject<State, Never> = .init()
     var page = 1
-    var data: [Movie] = []
+    private var data: [Movie] = []
     var shouldLoadNext = true
     var query = ""
     

@@ -20,7 +20,6 @@ class NowPlayingViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var cancellables = Set<AnyCancellable>()
     private let input: PassthroughSubject<NowPlayingViewModel.Input,Never> = .init()
-    private let cancelables = Set<AnyCancellable>()
     private lazy var vm: NowPlayingViewModel = setupModel()
     private let router = Router()
     private var dataSource: DataSource!
