@@ -90,7 +90,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Kes-59-MO2"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="xYi-jf-rE7">
                             <connections>
-                                <segue destination="kJo-YQ-rvO" kind="presentation" id="TPY-gC-2vr"/>
+                                <segue destination="ghF-jx-BKW" kind="show" id="fSb-MO-fo3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -205,40 +205,13 @@
             <objects>
                 <viewController id="ghF-jx-BKW" customClass="SearchMovieViewController" customModule="TheMoviesDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Egh-7t-GR7">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="aAQ-1c-C7h">
-                                <rect key="frame" x="0.0" y="56" width="390" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="ghF-jx-BKW" id="BaZ-0P-CPp"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ESr-7x-J6Z">
-                                <rect key="frame" x="0.0" y="112" width="390" height="675"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="h41-Yj-Pu6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="h41-Yj-Pu6" firstAttribute="trailing" secondItem="ESr-7x-J6Z" secondAttribute="trailing" id="3oY-W1-vIr"/>
-                            <constraint firstItem="h41-Yj-Pu6" firstAttribute="bottom" secondItem="ESr-7x-J6Z" secondAttribute="bottom" id="86h-1c-t3q"/>
-                            <constraint firstItem="aAQ-1c-C7h" firstAttribute="leading" secondItem="h41-Yj-Pu6" secondAttribute="leading" id="98n-B4-MpP"/>
-                            <constraint firstItem="ESr-7x-J6Z" firstAttribute="top" secondItem="aAQ-1c-C7h" secondAttribute="bottom" id="RRa-Vd-Lkv"/>
-                            <constraint firstItem="aAQ-1c-C7h" firstAttribute="trailing" secondItem="h41-Yj-Pu6" secondAttribute="trailing" id="TyI-bW-AmY"/>
-                            <constraint firstItem="ESr-7x-J6Z" firstAttribute="leading" secondItem="h41-Yj-Pu6" secondAttribute="leading" id="Vaa-fg-nsy"/>
-                            <constraint firstItem="aAQ-1c-C7h" firstAttribute="top" secondItem="h41-Yj-Pu6" secondAttribute="top" id="f2M-Px-xRZ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search Movies" id="RB2-c4-hGj">
                         <barButtonItem key="backBarButtonItem" title="Back" id="slj-qA-e1E"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JFk-Sc-BhZ">
-                            <connections>
-                                <action selector="dismiss" destination="ghF-jx-BKW" id="Rq7-Aw-vGn"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4p-L6-sAE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -284,24 +257,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgj-Hw-BY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1026.1538461538462" y="743.60189573459718"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jAO-M9-4ZE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kJo-YQ-rvO" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mqV-RE-nin">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ghF-jx-BKW" kind="relationship" relationship="rootViewController" id="SzX-mG-23g"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dov-gS-2Uh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2870.7692307692305" y="728.67298578199052"/>
         </scene>
         <!--Popular-->
         <scene sceneID="0io-nf-PBo">

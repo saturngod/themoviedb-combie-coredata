@@ -1,21 +1,13 @@
 //
-//  MoviePosterCollectionCell.swift
+//  SearchResultCell.swift
 //  TheMoviesDB
 //
-//  Created by Htain Lin Shwe on 12/10/2022.
+//  Created by Htain Lin Shwe on 14/10/2022.
 //
 
 import UIKit
-import SDWebImage
 
-class MoviePosterCollectionCell: UICollectionViewCell {
-    
-    static var nibName: String = "MoviePosterCollectionCell"
-    
-    static var reuseIdentifier: String {
-      return String(describing: MoviePosterCollectionCell.self)
-    }
-    
+class SearchResultCell: UITableViewCell {
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -39,4 +31,3 @@ class MoviePosterCollectionCell: UICollectionViewCell {
         }
     }
 }
-
