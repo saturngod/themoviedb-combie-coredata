@@ -68,7 +68,7 @@ class SearchMovieViewModel: SearchMovieViewModelType {
     
     
     func transform(input: SearchMovieViewModelInput) -> SearchMovieViewModelOutput {
-        input.sink { [weak self] event in
+        input.debounce(for: .milliseconds(300), scheduler: Scheduler.mainScheduler).sink { [weak self] event in
             switch event {
             case .search(let value):
                 self?.searchMovie(query: value,page: 1)
