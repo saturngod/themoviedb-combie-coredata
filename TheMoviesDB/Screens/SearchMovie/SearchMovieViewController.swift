@@ -10,9 +10,6 @@ import UIKit
 class SearchMovieViewController: UIViewController {
     
     
-   
-    
-    
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false

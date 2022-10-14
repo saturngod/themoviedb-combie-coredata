@@ -14,6 +14,7 @@ protocol MovieUseCaseType {
     func popularList(page: Int) -> AnyPublisher<MovieResp,Error>
     func topRatedList(page: Int) -> AnyPublisher<MovieResp,Error>
     func upComingList(page: Int) -> AnyPublisher<MovieResp,Error>
+    func search(query:String,page: Int) -> AnyPublisher<MovieResp,Error>
 }
 
 final class MovieUseCase: MovieUseCaseType {
@@ -63,6 +64,14 @@ final class MovieUseCase: MovieUseCaseType {
     
     func upComingList(page: Int) -> AnyPublisher<MovieResp,Error> {
         return networkService.load(Resource<MovieResp>.upComing(page: page))
+            .catch { error -> AnyPublisher<MovieResp,Error> in
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func search(query:String,page: Int) -> AnyPublisher<MovieResp,Error> {
+        return networkService.load(Resource<MovieResp>.search(query: query, page: page))
             .catch { error -> AnyPublisher<MovieResp,Error> in
                 return Fail(error: error).eraseToAnyPublisher()
             }

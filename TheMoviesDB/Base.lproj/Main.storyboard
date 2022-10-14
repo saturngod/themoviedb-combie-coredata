@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -65,16 +64,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ihJ-Bo-6Jn">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Gwj-sD-g56">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TRl-4a-iwo"/>
@@ -119,16 +109,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4bl-hL-SIe">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qDa-zC-VVS">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="awh-af-qhf"/>
@@ -168,16 +149,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FOj-qf-WVc">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FNS-vG-xUx">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BZQ-Xn-sZx"/>
@@ -262,7 +234,7 @@
         <scene sceneID="0io-nf-PBo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qLP-lW-Qnd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Popular" image="popcorn.fill" catalog="system" id="Aym-sa-1hZ"/>
+                    <tabBarItem key="tabBarItem" title="Popular" image="arrow.up.right.video.fill" catalog="system" id="Aym-sa-1hZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PRD-Pc-cY8">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
@@ -281,7 +253,7 @@
         <scene sceneID="PIP-PC-wX8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4UA-de-OKn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top Rated" image="square.3.stack.3d.top.fill" catalog="system" id="hfV-8X-Ahs"/>
+                    <tabBarItem key="tabBarItem" title="Top Rated" image="hand.thumbsup.fill" catalog="system" id="hfV-8X-Ahs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SN5-T8-cIa">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
@@ -313,16 +285,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bPt-q2-2PO">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IOR-Rh-ua0">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h1O-jW-zvD"/>
@@ -349,7 +312,7 @@
         <scene sceneID="PUz-CI-WrG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Exf-1l-0HT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Upcoming" image="newspaper.fill" catalog="system" id="Nja-dw-Pb8"/>
+                    <tabBarItem key="tabBarItem" title="Upcoming" image="arrowtriangle.up.circle.fill" catalog="system" id="Nja-dw-Pb8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MSG-68-48H">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
@@ -366,10 +329,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="newspaper.fill" catalog="system" width="128" height="112"/>
+        <image name="arrow.up.right.video.fill" catalog="system" width="128" height="81"/>
+        <image name="arrowtriangle.up.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
-        <image name="popcorn.fill" catalog="system" width="102" height="128"/>
-        <image name="square.3.stack.3d.top.fill" catalog="system" width="128" height="125"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

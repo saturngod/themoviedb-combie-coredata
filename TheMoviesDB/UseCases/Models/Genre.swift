@@ -18,7 +18,9 @@ class Genre: Codable {
     }
     
     func nameFrom(id: Int) -> String {
-        if let genre = genres.first {$0.id == id} {
+        if let genre = genres.first(where: { item in
+            item.id == id
+        }) {
             return genre.name
         }
         else {
