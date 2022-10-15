@@ -71,10 +71,24 @@ class SearchMovieViewModel: SearchMovieViewModelType {
     }
     
     func transform(input: SearchMovieViewModelInput) -> SearchMovieViewModelOutput {
-        input.debounce(for: .milliseconds(300), scheduler: Scheduler.mainScheduler).sink { [weak self] event in
+        
+        
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+        
+        let searchInput = input.search
+            .debounce(for: .milliseconds(300), scheduler: Scheduler.mainScheduler)
+            .removeDuplicates()
+        
+        searchInput.sink { [weak self] event in
             switch event {
             case .search(let value):
                 self?.searchMovie(query: value,page: 1)
+            }
+        }.store(in: &cancellables)
+
+        input.list.sink { [weak self] event in
+            switch event {
             case .loadNext:
                 self?.load()
             }

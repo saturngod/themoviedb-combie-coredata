@@ -23,6 +23,7 @@ class SearchMovieViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var cancellables = Set<AnyCancellable>()
     private let input: PassthroughSubject<SearchMovieViewModel.Input,Never> = .init()
+    private let search: PassthroughSubject<SearchMovieViewModel.SearchInput,Never> = .init()
     private lazy var vm: SearchMovieViewModel = SearchMovieViewModel(useCase: MovieUseCase(networkService: NetworkService()))
     
     private lazy var searchController: UISearchController = {
@@ -78,7 +79,7 @@ class SearchMovieViewController: UIViewController {
     }
     
     func bind() {
-        let output = vm.transform(input: input.eraseToAnyPublisher())
+        let output = vm.transform(input: SearchMovieViewModelInput(list: input.eraseToAnyPublisher(), search: search.eraseToAnyPublisher()))
         output.receive(on: DispatchQueue.main)
             .sink {[weak self] event in
                 switch event {
@@ -98,7 +99,7 @@ class SearchMovieViewController: UIViewController {
 
 extension SearchMovieViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        input.send(.search(value: searchText))
+        search.send(.search(value: searchText))
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

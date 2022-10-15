@@ -11,9 +11,10 @@ import Combine
 
 extension SearchMovieViewModel {
     
-    // MARK: - ENUM for Input and State
-    enum Input {
+    enum SearchInput: Equatable {
         case search(value: String)
+    }
+    enum Input {
         case loadNext
     }
     
@@ -27,8 +28,12 @@ extension SearchMovieViewModel {
 
 // MARK: - Input Output
 typealias SearchMovieViewModelOutput = AnyPublisher<SearchMovieViewModel.State, Never>
-typealias SearchMovieViewModelInput = AnyPublisher<SearchMovieViewModel.Input, Never>
 
+struct SearchMovieViewModelInput {
+    let list: AnyPublisher<SearchMovieViewModel.Input, Never>
+    let search: AnyPublisher<SearchMovieViewModel.SearchInput, Never>
+    
+}
 // MARK: - Model Type for transform
 protocol SearchMovieViewModelType: AnyObject {
     func transform(input: SearchMovieViewModelInput) -> SearchMovieViewModelOutput

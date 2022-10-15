@@ -23,7 +23,7 @@ enum ApiPath {
         case .popular(let page) : return "movie/popular?page=\(page)"
         case .topRated(let page) : return "movie/top_rated?page=\(page)"
         case .upComing(let page) : return "movie/upcoming?page=\(page)"
-        case .search(let query,let page) : return "search/movie?query=\(query)&page=\(page)"
+        case .search(let query,let page) : return "search/movie?query=\(query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")&page=\(page)"
         }
     }
 }
