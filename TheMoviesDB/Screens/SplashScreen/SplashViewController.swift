@@ -41,7 +41,7 @@ class SplashViewController: UIViewController {
                     
                 case .success(let genre):
                     GlobalService.shared.genres = genre
-                    self?.router.route(from: self, to: .MainScreen, present: true,animated: false)
+                    self?.router.route(from: self, to: .MainScreen, present: true,animated: false,passModel: nil)
                 case .failure(let error):
                     self?.errorLabel.text = error.localizedDescription
                     

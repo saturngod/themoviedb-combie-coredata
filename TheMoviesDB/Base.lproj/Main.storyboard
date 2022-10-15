@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9ek-Oh-I3j">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="8" y="91" width="374" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LBg-yn-dPg">
                                     <size key="itemSize" width="128" height="128"/>
@@ -70,10 +70,10 @@
                         <viewLayoutGuide key="safeArea" id="TRl-4a-iwo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="TRl-4a-iwo" firstAttribute="bottom" secondItem="9ek-Oh-I3j" secondAttribute="bottom" id="0vK-TA-eux"/>
-                            <constraint firstItem="9ek-Oh-I3j" firstAttribute="top" secondItem="TRl-4a-iwo" secondAttribute="top" id="BBd-rg-4wz"/>
-                            <constraint firstItem="9ek-Oh-I3j" firstAttribute="leading" secondItem="TRl-4a-iwo" secondAttribute="leading" id="iZV-eh-PSs"/>
-                            <constraint firstItem="TRl-4a-iwo" firstAttribute="trailing" secondItem="9ek-Oh-I3j" secondAttribute="trailing" id="l5p-k6-vp3"/>
+                            <constraint firstItem="9ek-Oh-I3j" firstAttribute="top" secondItem="TRl-4a-iwo" secondAttribute="top" id="SJ7-62-SgZ"/>
+                            <constraint firstItem="9ek-Oh-I3j" firstAttribute="bottom" secondItem="TRl-4a-iwo" secondAttribute="bottom" id="UI5-lw-0cU"/>
+                            <constraint firstItem="9ek-Oh-I3j" firstAttribute="trailing" secondItem="TRl-4a-iwo" secondAttribute="trailing" constant="-8" id="uqp-XM-Sbx"/>
+                            <constraint firstItem="9ek-Oh-I3j" firstAttribute="leading" secondItem="TRl-4a-iwo" secondAttribute="leading" constant="8" id="y0b-ec-0du"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TheMovieDB" id="s7C-ox-wa0">
@@ -101,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KCc-AP-2rR">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="8" y="91" width="374" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LbA-Oa-EFh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -115,10 +115,10 @@
                         <viewLayoutGuide key="safeArea" id="awh-af-qhf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KCc-AP-2rR" firstAttribute="top" secondItem="awh-af-qhf" secondAttribute="top" id="6Eg-6q-JD6"/>
-                            <constraint firstItem="awh-af-qhf" firstAttribute="trailing" secondItem="KCc-AP-2rR" secondAttribute="trailing" id="PR1-p3-QXJ"/>
-                            <constraint firstItem="KCc-AP-2rR" firstAttribute="leading" secondItem="awh-af-qhf" secondAttribute="leading" id="YGV-sB-x1D"/>
-                            <constraint firstItem="awh-af-qhf" firstAttribute="bottom" secondItem="KCc-AP-2rR" secondAttribute="bottom" id="cK6-qc-ZVD"/>
+                            <constraint firstItem="KCc-AP-2rR" firstAttribute="bottom" secondItem="awh-af-qhf" secondAttribute="bottom" id="dnW-FP-goB"/>
+                            <constraint firstItem="KCc-AP-2rR" firstAttribute="trailing" secondItem="awh-af-qhf" secondAttribute="trailing" constant="-8" id="mtA-zY-Nbs"/>
+                            <constraint firstItem="KCc-AP-2rR" firstAttribute="top" secondItem="awh-af-qhf" secondAttribute="top" id="uRO-BP-o9M"/>
+                            <constraint firstItem="KCc-AP-2rR" firstAttribute="leading" secondItem="awh-af-qhf" secondAttribute="leading" constant="8" id="xRD-wN-fyp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Popular" id="OCl-Qh-jRT">
@@ -141,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="efS-DM-ewd">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="8" y="91" width="374" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KMx-ZZ-Cz7">
                                     <size key="itemSize" width="128" height="128"/>
@@ -155,10 +155,10 @@
                         <viewLayoutGuide key="safeArea" id="BZQ-Xn-sZx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="BZQ-Xn-sZx" firstAttribute="bottom" secondItem="efS-DM-ewd" secondAttribute="bottom" id="7wR-ss-eCO"/>
-                            <constraint firstItem="BZQ-Xn-sZx" firstAttribute="trailing" secondItem="efS-DM-ewd" secondAttribute="trailing" id="hhh-kC-3c9"/>
-                            <constraint firstItem="efS-DM-ewd" firstAttribute="leading" secondItem="BZQ-Xn-sZx" secondAttribute="leading" id="hpm-p0-BuY"/>
-                            <constraint firstItem="efS-DM-ewd" firstAttribute="top" secondItem="BZQ-Xn-sZx" secondAttribute="top" id="vyj-oB-Lyy"/>
+                            <constraint firstItem="efS-DM-ewd" firstAttribute="bottom" secondItem="BZQ-Xn-sZx" secondAttribute="bottom" id="0WX-ne-v3w"/>
+                            <constraint firstItem="efS-DM-ewd" firstAttribute="trailing" secondItem="BZQ-Xn-sZx" secondAttribute="trailing" constant="-8" id="QjU-H2-2vT"/>
+                            <constraint firstItem="efS-DM-ewd" firstAttribute="top" secondItem="BZQ-Xn-sZx" secondAttribute="top" id="V9B-6c-C8T"/>
+                            <constraint firstItem="efS-DM-ewd" firstAttribute="leading" secondItem="BZQ-Xn-sZx" secondAttribute="leading" constant="8" id="aW8-mY-YLg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Top Rated" id="40i-91-xmP">
@@ -292,7 +292,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MKg-8Y-HpR">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="8" y="91" width="374" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="obf-pe-cCs">
                                     <size key="itemSize" width="128" height="128"/>
@@ -306,10 +306,10 @@
                         <viewLayoutGuide key="safeArea" id="h1O-jW-zvD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MKg-8Y-HpR" firstAttribute="top" secondItem="h1O-jW-zvD" secondAttribute="top" id="1AJ-p4-xlm"/>
-                            <constraint firstItem="MKg-8Y-HpR" firstAttribute="leading" secondItem="h1O-jW-zvD" secondAttribute="leading" id="2zi-us-BMI"/>
-                            <constraint firstItem="h1O-jW-zvD" firstAttribute="bottom" secondItem="MKg-8Y-HpR" secondAttribute="bottom" id="BSD-C3-A7r"/>
-                            <constraint firstItem="h1O-jW-zvD" firstAttribute="trailing" secondItem="MKg-8Y-HpR" secondAttribute="trailing" id="JKC-7c-ffk"/>
+                            <constraint firstItem="MKg-8Y-HpR" firstAttribute="bottom" secondItem="h1O-jW-zvD" secondAttribute="bottom" id="3He-bo-2oh"/>
+                            <constraint firstItem="MKg-8Y-HpR" firstAttribute="leading" secondItem="h1O-jW-zvD" secondAttribute="leading" constant="8" id="D74-Zx-EC8"/>
+                            <constraint firstItem="MKg-8Y-HpR" firstAttribute="trailing" secondItem="h1O-jW-zvD" secondAttribute="trailing" constant="-8" id="lhV-pg-ey3"/>
+                            <constraint firstItem="MKg-8Y-HpR" firstAttribute="top" secondItem="h1O-jW-zvD" secondAttribute="top" id="tcI-E3-ErY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Upcoming" id="W5D-bh-hju">

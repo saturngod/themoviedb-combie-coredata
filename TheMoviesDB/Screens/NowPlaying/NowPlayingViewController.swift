@@ -37,6 +37,8 @@ class NowPlayingViewController: UIViewController {
     func registerCell() {
         collectionView.register(UINib(nibName: MoviePosterCollectionCell.nibName, bundle: .main), forCellWithReuseIdentifier: MoviePosterCollectionCell.reuseIdentifier)
         
+        collectionView.delegate = self
+        
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
             // Item
@@ -126,3 +128,15 @@ class NowPlayingViewController: UIViewController {
     }
 }
 
+extension NowPlayingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        
+        let model = DetailViewModel(movie: movie)
+        router.route(from: self, to: .DetailScreen, present: false,animated: true,passModel: model)
+    }
+}

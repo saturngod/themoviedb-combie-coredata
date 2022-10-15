@@ -19,6 +19,7 @@ class SearchMovieViewController: UIViewController {
     typealias TableSnapshot = NSDiffableDataSourceSnapshot<TableSection, Movie>
     
     
+    private var router = Router()
     
     @IBOutlet weak var tableView: UITableView!
     private var cancellables = Set<AnyCancellable>()
@@ -51,6 +52,7 @@ class SearchMovieViewController: UIViewController {
         
         tableView.register(UINib(nibName: SearchResultCell.nibName, bundle: .main), forCellReuseIdentifier: SearchResultCell.reuseIdentifier)
         
+        tableView.delegate = self
         
         
     }
@@ -104,5 +106,19 @@ extension SearchMovieViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         //search.send("")
+    }
+}
+
+
+extension SearchMovieViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+     
+        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        
+        let model = DetailViewModel(movie: movie)
+        router.route(from: self, to: .DetailScreen, present: false,animated: true,passModel: model)
     }
 }
