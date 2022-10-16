@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 // MARK: - MovieResp
@@ -109,4 +110,5 @@ class Movie: Codable, Hashable{
     static func == (lhs: Movie, rhs: Movie) -> Bool {
       lhs.id == rhs.id
     }
+    
 }

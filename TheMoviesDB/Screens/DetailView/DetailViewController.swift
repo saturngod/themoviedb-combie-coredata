@@ -18,10 +18,49 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var voteCountLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     var vm: DefaultViewModelType?
+    private var cancellables = Set<AnyCancellable>()
+    private let input: PassthroughSubject<DetailViewModel.Input,Never> = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        input.send(.appear)
+    }
+    
+    @objc private func changeFav() {
+        input.send(.toggleFavourite)
+    }
+    
+    func bind() {
+        if let viewmodel = vm as? DetailViewModel {
+            let output = viewmodel.transform(input: self.input.eraseToAnyPublisher())
+            output.receive(on: DispatchQueue.main)
+                .sink {[weak self] event in
+                    switch event {
+                    case .changeFav(let fav):
+                        self?.setupUI(fav: fav)
+                    
+                    }
+                }.store(in: &cancellables)
+            
+        }
+    }
+    
+    private func setupUI(fav: Bool) {
+        var image:UIImage!
+        if(fav) {
+            image = UIImage(systemName: "star.fill")
+        }
+        else {
+            image = UIImage(systemName: "star")
+        }
+        
+        let favBtn = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(changeFav))
+        self.navigationItem.rightBarButtonItem = favBtn
     }
     
     private func updateUI() {
