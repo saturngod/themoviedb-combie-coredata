@@ -23,11 +23,23 @@ class NowPlayingViewController: UIViewController {
     private lazy var vm: NowPlayingViewModel = setupModel()
     private let router = Router()
     private var dataSource: DataSource!
+    private var loadingActivity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         registerCell()
         bind()
+    }
+    
+    func setupUI() {
+        loadingActivity = UIActivityIndicatorView(style: .large)
+        loadingActivity.translatesAutoresizingMaskIntoConstraints = false
+        loadingActivity.hidesWhenStopped = true
+        self.view.addSubview(loadingActivity)
+        loadingActivity.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loadingActivity.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        
     }
     
     func setupModel() -> NowPlayingViewModel {
@@ -112,7 +124,12 @@ class NowPlayingViewController: UIViewController {
             .sink {[weak self] event in
                 switch event {
                 case .loading(let loaded):
-                    print("LOADING OR NOT \(loaded)")
+                    if(loaded) {
+                        self?.loadingActivity.startAnimating()
+                    }
+                    else {
+                        self?.loadingActivity.stopAnimating()
+                    }
                 case .newData(let data):
                     self?.applySnapshot(data: data)
                 case .failure(let error):
