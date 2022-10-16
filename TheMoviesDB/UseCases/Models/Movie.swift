@@ -111,5 +111,16 @@ class Movie: Codable, Hashable{
       lhs.id == rhs.id
     }
     
-    
+    static func getMovieFrom(fav: Favourite) -> Movie {
+        var genreIDS: [Int] = []
+        
+        fav.gen?.forEach({ gen in
+            if let genre = gen as? FavGenre {
+                genreIDS.append(Int(genre.id))
+            }
+        })
+        
+        return Movie(adult: false, backdropPath: fav.backdropPath ?? "", genreIDS: genreIDS, id: Int(fav.id), originalLanguage: "en", originalTitle: fav.title ?? "", overview: fav.overview ?? "", popularity: fav.popularity , posterPath: fav.posterPath ?? "", releaseDate: fav.releaseDate ?? "", title: fav.title ?? "", video: true, voteAverage: fav.voteAverage, voteCount: Int(fav.voteCount))
+        
+    }
 }

@@ -89,14 +89,15 @@ class FavouriteViewController: UIViewController {
 extension FavouriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+
+        let model = DetailViewModel(movie: Movie.getMovieFrom(fav: movie), useCase: FavouriteUseCase())
+        router.route(from: self, to: .DetailScreen, present: false,animated: true,passModel: model)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            input.send(.deleteAt(index: indexPath.row))
-        }
-    }
+
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, success) in

@@ -47,6 +47,15 @@ class FavouriteUseCase: FavouriteUseCaseType {
         fav.releaseDate = movie.releaseDate
         fav.voteAverage = movie.voteAverage
         fav.voteCount = Int32(movie.voteCount)
+        fav.overview = movie.overview
+        fav.popularity = movie.popularity
+        
+        movie.genreIDS.forEach { id in
+            let gen = FavGenre(context: mymoc)
+            gen.id = Int32(id)
+            fav.addToGen(gen)
+        }
+        
         try? mymoc.save()
        
     }
