@@ -14,10 +14,11 @@ class DetailViewModel: DefaultViewModelType & DetailViewModelType {
     var cancellables = Set<AnyCancellable>()
     let output: PassthroughSubject<State, Never> = .init()
     
-    private var favUseCase = FavouriteUseCase()
+    private var favUseCase: FavouriteUseCaseType
     
     private var currentFav = false
     private var fav: Favourite?
+    
     
     func transform(input: DetailViewModelInput) -> DetailViewModelOutput {
         
@@ -36,8 +37,9 @@ class DetailViewModel: DefaultViewModelType & DetailViewModelType {
     
     private var movie: Movie?
     
-    init(movie: Movie) {
+    init(movie: Movie,useCase: FavouriteUseCaseType) {
         self.movie = movie
+        self.favUseCase = useCase
     }
     
     func getMovie()-> Movie? {

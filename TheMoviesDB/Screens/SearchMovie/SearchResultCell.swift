@@ -36,4 +36,20 @@ class SearchResultCell: UITableViewCell {
             }
         }
     }
+    
+    var favourite: Favourite? {
+        didSet {
+            titleLabel.text = favourite?.title
+            dateLabel.text = favourite?.releaseDate
+            genreLabel.text = favourite?.genres
+            voteAverageLabel.text = "\(favourite?.voteAverage ?? 0)"
+            voteCount.text = "\(favourite?.voteCount ?? 0)"
+            
+            if let imgPath = favourite?.posterPath {
+ 
+                    thumbnailView.sd_setImage(with: URL(string: "\(ApiConstants.smallImageUrl)/\(imgPath)"), placeholderImage: UIImage(named: "cover"))
+            
+            }
+        }
+    }
 }

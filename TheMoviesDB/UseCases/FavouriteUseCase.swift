@@ -12,6 +12,7 @@ protocol FavouriteUseCaseType {
     func getAllFavourites() -> [Favourite]
     func saveFavourite(movie: Movie)
     func deleteFavourite(movie: Favourite)
+    func getBy(id: Int) -> Favourite?
 }
 
 class FavouriteUseCase: FavouriteUseCaseType {

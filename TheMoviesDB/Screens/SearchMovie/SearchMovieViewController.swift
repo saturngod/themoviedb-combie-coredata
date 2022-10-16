@@ -117,8 +117,8 @@ extension SearchMovieViewController: UITableViewDelegate {
         guard let movie = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
-        
-        let model = DetailViewModel(movie: movie)
+
+        let model = DetailViewModel(movie: movie, useCase: FavouriteUseCase())
         router.route(from: self, to: .DetailScreen, present: false,animated: true,passModel: model)
     }
 }
