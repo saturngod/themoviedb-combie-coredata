@@ -66,6 +66,12 @@ class FavouriteViewController: UIViewController {
         snapShot.appendSections([.list])
         snapShot.appendItems(data)
         self.dataSource.apply(snapShot,animatingDifferences: true)
+        if(data.count == 0) {
+            tableView.setEmptyView(title: "You don't have any favourite movie.", message: "Your favourite movie will be in here")
+        }
+        else {
+            tableView.backgroundView = nil
+        }
     }
     
     func bind() {
@@ -88,6 +94,8 @@ class FavouriteViewController: UIViewController {
 
 extension FavouriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         guard let movie = dataSource.itemIdentifier(for: indexPath) else {
             return

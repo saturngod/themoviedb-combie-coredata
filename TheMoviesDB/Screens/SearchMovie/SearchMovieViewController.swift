@@ -74,10 +74,18 @@ class SearchMovieViewController: UIViewController {
     }
     
     func updateData(newData: [Movie]) {
+        let data = vm.getData()
         var snapShot = TableSnapshot()
         snapShot.appendSections([.list])
-        snapShot.appendItems(vm.getData())
+        snapShot.appendItems(data)
         self.dataSource.apply(snapShot,animatingDifferences: true)
+        
+        if(data.count == 0) {
+            tableView.setEmptyView(title: "No movie found", message: "Please try another keyword to search movie")
+        }
+        else {
+            tableView.backgroundView = nil
+        }
     }
     
     func bind() {

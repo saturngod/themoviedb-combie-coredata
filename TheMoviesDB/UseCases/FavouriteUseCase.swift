@@ -17,7 +17,25 @@ protocol FavouriteUseCaseType {
 
 class FavouriteUseCase: FavouriteUseCaseType {
     
-    let moc: NSManagedObjectContext? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    static let containerName = "favourite"
+    
+    lazy var container: NSPersistentContainer = makeContainer()
+    
+    var moc: NSManagedObjectContext?  {
+        return container.viewContext
+    }
+    
+    func makeContainer() -> NSPersistentContainer {
+        
+        let container = NSPersistentContainer(name: FavouriteUseCase.containerName)
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+        
+    }
     
     func getAllFavourites() -> [Favourite] {
         
@@ -57,7 +75,7 @@ class FavouriteUseCase: FavouriteUseCaseType {
         }
         
         try? mymoc.save()
-       
+        
     }
     
     func deleteFavourite(movie: Favourite) {
@@ -68,7 +86,7 @@ class FavouriteUseCase: FavouriteUseCaseType {
     }
     
     func getBy(id: Int) -> Favourite? {
-       
+        
         let favFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
         favFetchRequest.predicate = NSPredicate(format: "id == %d", id )
         favFetchRequest.fetchLimit = 1

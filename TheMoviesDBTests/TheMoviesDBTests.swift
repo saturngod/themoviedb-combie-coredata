@@ -14,10 +14,12 @@ final class TheMoviesDBTests: XCTestCase {
     
     let networkService = NetworkServiceTypeMock()
     var useCase: MovieUseCase!
+    var favUseCase: MockFavouriteUseCase!
     private var cancellables: [AnyCancellable] = []
     
     override func setUp() {
         useCase = MovieUseCase(networkService: networkService)
+        favUseCase = MockFavouriteUseCase()
     }
     
     override func setUpWithError() throws {
@@ -181,6 +183,43 @@ final class TheMoviesDBTests: XCTestCase {
         
     }
     
+    func testSearchShouldGetData() throws {
+        
+        let expectation = self.expectation(description: "SearchModelTest")
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = MovieResp.loadFromFile(testBundle: testBundle,filename: "HelloSearch.json")
+        var stage = true
+        networkService.responses["/3/search/movie"] = file
+        
+        let model = SearchMovieViewModel(useCase: useCase)
+        let input: PassthroughSubject<SearchMovieViewModel.Input,Never> = .init()
+        let search: PassthroughSubject<SearchMovieViewModel.SearchInput,Never> = .init()
+        
+        let output = model.transform(input: SearchMovieViewModelInput(list: input.eraseToAnyPublisher(), search: search.eraseToAnyPublisher()))
+        output.sink { event in
+            switch event {
+            case .newData(let data):
+                XCTAssertTrue(data.count > 0)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+                expectation.fulfill()
+            case .loading(let loaded):
+                XCTAssertEqual(loaded, stage)
+                stage = !stage
+            }
+        }.store(in: &cancellables)
+
+        
+        search.send(.search(value: "hello"))
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertTrue(model.shouldLoadNext)
+        
+    }
+    
+
+    
     func testNowPlayingModelShouldNotLoadNext() throws {
         
         let expectation = self.expectation(description: "NowPlayingModel")
@@ -216,6 +255,43 @@ final class TheMoviesDBTests: XCTestCase {
         
     }
     
+    func testAddFavourite() throws {
+        
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = MovieResp.loadFromFile(testBundle: testBundle,filename: "NowPlaying.json")
+        if let mov = file.results.first {
+            
+            favUseCase.saveFavourite(movie: mov)
+            if let fav = favUseCase.getBy(id: mov.id) {
+                XCTAssertEqual(mov.id, Int(fav.id))
+                XCTAssertEqual(mov.title, fav.title)
+            }
+            else {
+                XCTFail("NO ID")
+            }
+        }
+        else {
+            XCTFail("NO MOVIE")
+        }
+        
+    }
+    
+    func testFavouriteCount() throws {
+        
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = MovieResp.loadFromFile(testBundle: testBundle,filename: "NowPlaying.json")
+        file.results.forEach { movie in
+            favUseCase.saveFavourite(movie: movie)
+        }
+        
+        let all = favUseCase.getAllFavourites()
+        XCTAssertTrue(file.results.count == all.count)
+        
+        
+    }
+    
     
     func testPerformance() throws {
         // This is an example of a performance test case.
@@ -230,6 +306,8 @@ final class TheMoviesDBTests: XCTestCase {
             
         }
     }
+    
+    
     
 }
 

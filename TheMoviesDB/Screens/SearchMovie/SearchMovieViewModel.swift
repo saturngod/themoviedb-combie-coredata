@@ -35,10 +35,10 @@ class SearchMovieViewModel: SearchMovieViewModelType {
        
         self.page = self.page + 1
        
-        if(movieResp.results.count > 0) {
-            self.data.append(contentsOf: movieResp.results)
-            self.output.send(.newData(data: movieResp.results))
-        }
+       
+        self.data.append(contentsOf: movieResp.results)
+        self.output.send(.newData(data: movieResp.results))
+       
     }
     
     func searchMovie(query: String,page: Int) {
