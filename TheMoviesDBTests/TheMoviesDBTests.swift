@@ -255,7 +255,7 @@ final class TheMoviesDBTests: XCTestCase {
         
     }
     
-    func testAddFavourite() throws {
+    func testAddDeleteFavourite() throws {
         
         
         let testBundle = Bundle(for: type(of: self))
@@ -266,6 +266,10 @@ final class TheMoviesDBTests: XCTestCase {
             if let fav = favUseCase.getBy(id: mov.id) {
                 XCTAssertEqual(mov.id, Int(fav.id))
                 XCTAssertEqual(mov.title, fav.title)
+                
+                favUseCase.deleteFavourite(movie: fav)
+                let fav = favUseCase.getAllFavourites()
+                XCTAssertTrue(fav.count == 0)
             }
             else {
                 XCTFail("NO ID")
@@ -291,6 +295,8 @@ final class TheMoviesDBTests: XCTestCase {
         
         
     }
+    
+    
     
     
     func testPerformance() throws {
